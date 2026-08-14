@@ -1,0 +1,2574 @@
+apsara-rawal-dangar/
+├── .github/workflows/deploy.yml
+├── data/
+│   └── content.json
+├── public/
+│   ├── robots.txt
+│   ├── ads.txt
+│   └── favicon.ico
+├── scripts/
+│   ├── build.js
+│   ├── generate-sitemap.js
+│   └── validate-content.js
+├── src/
+│   ├── index.html
+│   ├── article-template.html
+│   ├── categories.html
+│   ├── search.html
+│   ├── 404.html
+│   ├── pages/
+│   │   ├── about.html
+│   │   ├── contact.html
+│   │   ├── privacy-policy.html
+│   │   └── terms.html
+│   ├── assets/
+│   │   ├── images/
+│   │   └── logo/
+│   ├── style.css
+│   └── script.js
+├── package.json
+├── README.md
+└── .gitignore{
+  "name": "apsara-rawal-dangar",
+  "version": "1.0.0",
+  "description": "Professional educational website for Apsara Rawal Dangar",
+  "main": "index.html",
+  "scripts": {
+    "validate": "node scripts/validate-content.js",
+    "build": "node scripts/build.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "dev": "npx serve src",
+    "deploy": "npm run validate && npm run build && npm run sitemap",
+    "test-large": "node scripts/test-large.js"
+  },
+  "keywords": [
+    "education",
+    "articles",
+    "static-site",
+    "github-pages"
+  ],
+  "author": "Apsara Rawal Dangar",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.idea/
+.vscode/name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Validate content
+        run: npm run validate
+        
+      - name: Build website
+        run: npm run build
+        
+      - name: Generate sitemap
+        run: npm run sitemap
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4[
+  {
+    "id": 1,
+    "title": "Understanding Digital Literacy: A Complete Guide for Beginners",
+    "slug": "understanding-digital-literacy-complete-guide",
+    "category": "Education",
+    "subcategory": "Digital Skills",
+    "description": "Learn the essential digital literacy skills needed for success in the modern world. A comprehensive guide covering everything from basic computer use to online safety.",
+    "content": "<h2>What is Digital Literacy?</h2><p>Digital literacy refers to the ability to use, understand, and create digital information effectively. In today's interconnected world, being digitally literate is no longer optional—it's a necessity.</p><h3>Core Components of Digital Literacy</h3><ul><li><strong>Basic Computer Skills:</strong> Understanding how to use operating systems, file management, and basic software applications.</li><li><strong>Internet Navigation:</strong> Effectively searching for information, evaluating sources, and using online tools.</li><li><strong>Digital Communication:</strong> Using email, messaging apps, and social media professionally and responsibly.</li><li><strong>Information Literacy:</strong> Critically evaluating online information and identifying reliable sources.</li><li><strong>Online Safety:</strong> Understanding privacy settings, recognizing scams, and protecting personal data.</li></ul><h3>Why Digital Literacy Matters</h3><p>Digital literacy opens doors to education, employment, and social connection. It empowers individuals to participate fully in modern society and adapt to technological changes.</p><blockquote>\"Digital literacy is not just about knowing how to use a computer—it's about understanding how to navigate, evaluate, and create information in a digital world.\"</blockquote><h3>Practical Steps to Improve Digital Literacy</h3><ol><li>Start with basic computer tutorials and practice regularly.</li><li>Take free online courses on platforms like Coursera or edX.</li><li>Practice critical thinking when consuming online content.</li><li>Learn about privacy settings on social media and other platforms.</li><li>Stay updated on new technologies and digital trends.</li></ol>",
+    "image": "/assets/images/digital-literacy-guide.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-14",
+    "dateModified": "2026-08-14",
+    "tags": ["digital literacy", "education", "technology", "digital skills"],
+    "keywords": ["digital literacy", "technology education", "computer skills", "online safety"],
+    "featured": true,
+    "popular": true,
+    "status": "published",
+    "readingTime": 6,
+    "seoTitle": "Digital Literacy Guide for Beginners | Apsara Rawal Dangar",
+    "seoDescription": "A complete guide to digital literacy for beginners. Learn essential computer skills, online safety, and digital communication strategies for the modern world."
+  },
+  {
+    "id": 2,
+    "title": "10 Practical Tips for Effective Online Learning",
+    "slug": "practical-tips-effective-online-learning",
+    "category": "Education",
+    "subcategory": "Learning Strategies",
+    "description": "Discover proven strategies to make your online learning experience more effective and engaging. These practical tips will help you stay motivated and learn better.",
+    "content": "<h2>Mastering the Art of Online Learning</h2><p>Online learning offers incredible flexibility, but it also requires self-discipline and effective strategies. Here are 10 practical tips to help you succeed.</p><h3>1. Create a Dedicated Study Space</h3><p>Designate a quiet, organized space specifically for learning. This helps your brain associate the area with focused work.</p><h3>2. Set Clear Goals</h3><p>Define what you want to achieve each session. Break larger goals into smaller, manageable tasks.</p><h3>3. Establish a Routine</h3><p>Consistency is key. Set specific times for learning and stick to them as much as possible.</p><h3>4. Minimize Distractions</h3><p>Turn off notifications, use website blockers if needed, and let family members know your study times.</p><h3>5. Actively Engage with Content</h3><p>Take notes, ask questions, and participate in discussions. Passive watching is less effective.</p><h3>6. Connect with Fellow Learners</h3><p>Join study groups, forums, or social media communities related to your course.</p><h3>7. Take Regular Breaks</h3><p>Use techniques like the Pomodoro method (25 minutes study, 5 minutes break) to maintain focus.</p><h3>8. Test Your Knowledge</h3><p>Regularly quiz yourself or teach concepts to others to reinforce learning.</p><h3>9. Use Multiple Resources</h3><p>Supplement your main learning materials with additional resources like videos, articles, or podcasts.</p><h3>10. Reflect and Adjust</h3><p>Regularly assess what's working and what isn't. Be willing to adjust your approach.</p>",
+    "image": "/assets/images/online-learning-tips.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-13",
+    "dateModified": "2026-08-13",
+    "tags": ["online learning", "education", "study tips", "productivity"],
+    "keywords": ["online learning tips", "study strategies", "distance education", "learning techniques"],
+    "featured": false,
+    "popular": true,
+    "status": "published",
+    "readingTime": 5,
+    "seoTitle": "10 Effective Online Learning Tips | Apsara Rawal Dangar",
+    "seoDescription": "Discover 10 practical tips for effective online learning. Improve your study habits, stay motivated, and get the most from your digital education experience."
+  },
+  {
+    "id": 3,
+    "title": "The Future of Education: How Technology is Transforming Classrooms",
+    "slug": "future-education-technology-transforming-classrooms",
+    "category": "Education",
+    "subcategory": "EdTech",
+    "description": "Explore how emerging technologies are reshaping education and what the classrooms of tomorrow will look like. From AI tutors to virtual reality learning experiences.",
+    "content": "<h2>A New Era of Learning</h2><p>Technology is revolutionizing education at an unprecedented pace. From artificial intelligence to virtual reality, new tools are creating possibilities that were once science fiction.</p><h3>Key Technologies Shaping Education</h3><ul><li><strong>Artificial Intelligence:</strong> Personalized learning paths, intelligent tutoring systems, and automated grading.</li><li><strong>Virtual and Augmented Reality:</strong> Immersive learning experiences that bring subjects to life.</li><li><strong>Adaptive Learning Platforms:</strong> Systems that adjust content difficulty based on individual student performance.</li><li><strong>Gamification:</strong> Using game elements to increase engagement and motivation.</li><li><strong>Blockchain:</strong> Secure credential verification and decentralized education records.</li></ul><h3>The Changing Role of Teachers</h3><p>While technology enhances learning, the role of teachers remains crucial. Educators are evolving from content deliverers to learning facilitators, guides, and mentors.</p><h3>Challenges to Consider</h3><p>Implementing technology in education also brings challenges:</p><ul><li>Digital divide and unequal access</li><li>Privacy and data security concerns</li><li>Teacher training and adaptation</li><li>Balancing screen time with traditional methods</li></ul><h3>What the Future Holds</h3><p>The future classroom will likely be a hybrid environment blending physical and digital experiences, personalized for each student's needs while maintaining the human connection that makes education meaningful.</p>",
+    "image": "/assets/images/future-education.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-12",
+    "dateModified": "2026-08-12",
+    "tags": ["future of education", "EdTech", "technology", "learning innovation"],
+    "keywords": ["education technology", "future classrooms", "EdTech trends", "AI in education"],
+    "featured": true,
+    "popular": false,
+    "status": "published",
+    "readingTime": 7,
+    "seoTitle": "The Future of Education: Technology Trends | Apsara Rawal Dangar",
+    "seoDescription": "Explore how technology is transforming education. Learn about AI, VR, and other innovations shaping the classrooms of tomorrow."
+  },
+  {
+    "id": 4,
+    "title": "Essential Digital Skills for Career Success in 2026",
+    "slug": "essential-digital-skills-career-success-2026",
+    "category": "Career",
+    "subcategory": "Professional Development",
+    "description": "Identify the most valuable digital skills for career advancement in 2026 and beyond. Stay competitive in the evolving job market.",
+    "content": "<h2>Building a Future-Proof Career</h2><p>The job market is evolving rapidly. To stay competitive, professionals must continuously develop their digital skills. Here are the essential skills you need.</p><h3>Digital Skills Categories</h3><ul><li><strong>Data Literacy:</strong> Understanding, analyzing, and communicating with data.</li><li><strong>Digital Collaboration:</strong> Using tools like Slack, Teams, and project management platforms.</li><li><strong>Basic Coding:</strong> Understanding programming fundamentals (even if you're not a developer).</li><li><strong>Cybersecurity Awareness:</strong> Protecting data and understanding security best practices.</li><li><strong>Digital Marketing:</strong> Understanding how to promote products and services online.</li><li><strong>AI and Machine Learning:</strong> Understanding how AI works and how to leverage it.</li></ul><h3>Soft Skills that Complement Digital Skills</h3><p>Digital skills alone aren't enough. Combine them with:</p><ul><li>Critical thinking and problem-solving</li><li>Adaptability and continuous learning</li><li>Emotional intelligence and communication</li><li>Collaboration and teamwork</li></ul><h3>How to Develop These Skills</h3><p>Start with free resources like online courses, tutorials, and community colleges. Practice regularly and seek opportunities to apply new skills in your current role.</p><blockquote>\"The future belongs to those who learn more skills and combine them in creative ways.\"</blockquote>",
+    "image": "/assets/images/career-digital-skills.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-11",
+    "dateModified": "2026-08-11",
+    "tags": ["career skills", "professional development", "digital skills", "job market"],
+    "keywords": ["career success", "digital skills", "professional growth", "job market trends"],
+    "featured": false,
+    "popular": false,
+    "status": "published",
+    "readingTime": 6,
+    "seoTitle": "Digital Skills for Career Success in 2026 | Apsara Rawal Dangar",
+    "seoDescription": "Learn the essential digital skills needed for career success in 2026. From data literacy to AI understanding, stay competitive in the modern job market."
+  },
+  {
+    "id": 5,
+    "title": "A Beginner's Guide to Personal Finance Management",
+    "slug": "beginners-guide-personal-finance-management",
+    "category": "Finance",
+    "subcategory": "Personal Finance",
+    "description": "Learn the fundamentals of managing your personal finances. From budgeting to saving, this guide covers everything beginners need to know.",
+    "content": "<h2>Taking Control of Your Finances</h2><p>Personal finance management is a crucial life skill that everyone should master. This guide will walk you through the basics and help you build a strong financial foundation.</p><h3>Step 1: Create a Budget</h3><p>Track your income and expenses to understand where your money goes. Use the 50/30/20 rule: 50% for needs, 30% for wants, 20% for savings and debt repayment.</p><h3>Step 2: Build an Emergency Fund</h3><p>Aim to save 3-6 months of living expenses in a easily accessible savings account. This provides a safety net for unexpected situations.</p><h3>Step 3: Reduce and Manage Debt</h3><p>Prioritize paying off high-interest debt first. Consider consolidation options if it makes sense for your situation.</p><h3>Step 4: Start Investing Early</h3><p>Even small amounts invested regularly can grow significantly over time due to compound interest. Learn about different investment options and start with what you understand.</p><h3>Step 5: Protect Your Assets</h3><p>Ensure you have appropriate insurance coverage: health, life, property, and disability insurance as needed.</p><h3>Common Mistakes to Avoid</h3><ul><li>Living beyond your means</li><li>Not having an emergency fund</li><li>Ignoring retirement planning</li><li>Not tracking your spending</li><li>Taking on too much debt</li></ul>",
+    "image": "/assets/images/personal-finance.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-10",
+    "dateModified": "2026-08-10",
+    "tags": ["personal finance", "money management", "budgeting", "savings"],
+    "keywords": ["personal finance guide", "money management tips", "budgeting basics", "financial literacy"],
+    "featured": false,
+    "popular": true,
+    "status": "published",
+    "readingTime": 8,
+    "seoTitle": "Personal Finance Management Guide for Beginners | Apsara Rawal Dangar",
+    "seoDescription": "Master personal finance with this beginner's guide. Learn budgeting, saving, investing, and debt management strategies for a secure financial future."
+  },
+  {
+    "id": 6,
+    "title": "The Importance of Critical Thinking in the Digital Age",
+    "slug": "importance-critical-thinking-digital-age",
+    "category": "Education",
+    "subcategory": "Critical Thinking",
+    "description": "Why critical thinking is more important than ever in an age of information overload and misinformation. Learn practical strategies to sharpen your thinking.",
+    "content": "<h2>Thinking Clearly in a Confusing World</h2><p>We're bombarded with information from countless sources. Critical thinking—the ability to analyze information objectively and make reasoned judgments—has never been more essential.</p><h3>What is Critical Thinking?</h3><p>Critical thinking is the ability to think clearly and rationally, understanding the logical connection between ideas. It involves:</p><ul><li>Questioning assumptions</li><li>Evaluating evidence</li><li>Considering multiple perspectives</li><li>Making reasoned conclusions</li></ul><h3>Why It Matters Now</h3><p>The digital age presents unique challenges:</p><ul><li>Information overload makes it hard to distinguish fact from fiction</li><li>Algorithms create echo chambers that reinforce existing beliefs</li><li>Deepfakes and AI-generated content blur the line between real and fake</li><li>Social media prioritizes engagement over accuracy</li></ul><h3>Practical Strategies</h3><ol><li><strong>Question the source:</strong> Who created this content? What's their agenda?</li><li><strong>Verify claims:</strong> Check information against multiple reliable sources.</li><li><strong>Think about your biases:</strong> Everyone has biases. Acknowledge yours.</li><li><strong>Practice intellectual humility:</strong> Be willing to change your mind when presented with new evidence.</li><li><strong>Consider the opposite:</strong> Argue against your own position to test its strength.</li></ol><p>By developing these skills, you'll become a more informed citizen, a better decision-maker, and more resilient to misinformation.</p>",
+    "image": "/assets/images/critical-thinking.jpg",
+    "author": "Apsara Rawal Dangar",
+    "datePublished": "2026-08-09",
+    "dateModified": "2026-08-09",
+    "tags": ["critical thinking", "information literacy", "education", "digital age"],
+    "keywords": ["critical thinking skills", "information evaluation", "media literacy", "digital age challenges"],
+    "featured": true,
+    "popular": false,
+    "status": "published",
+    "readingTime": 7,
+    "seoTitle": "Critical Thinking in the Digital Age | Apsara Rawal Dangar",
+    "seoDescription": "Discover why critical thinking is essential in the digital age. Learn practical strategies to evaluate information, avoid misinformation, and think clearly."
+  }
+]/* ============================================================
+   APSARA RAWAL DANGAR - Complete Stylesheet
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f5;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #6c7a8a;
+  --accent-color: #2d6a4f;
+  --accent-light: #409f7a;
+  --accent-dark: #1b4332;
+  --border-color: #e9ecef;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --header-bg: #ffffff;
+  --footer-bg: #1a1a2e;
+  --footer-text: #e9ecef;
+  --footer-muted: #8a9aa8;
+  --link-color: #2d6a4f;
+  --link-hover: #1b4332;
+  --code-bg: #f1f3f5;
+  --blockquote-border: #2d6a4f;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --hero-gradient-start: #1a1a2e;
+  --hero-gradient-end: #2d6a4f;
+  --hero-text: #ffffff;
+  --badge-bg: #2d6a4f;
+  --badge-text: #ffffff;
+  --transition-speed: 0.3s;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --text-primary: #e9ecef;
+  --text-secondary: #b0b8c0;
+  --text-muted: #8898a8;
+  --accent-color: #409f7a;
+  --accent-light: #52b788;
+  --accent-dark: #2d6a4f;
+  --border-color: #2a3a4e;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-bg: #16213e;
+  --header-bg: #1a1a2e;
+  --footer-bg: #0f0f1a;
+  --footer-text: #e9ecef;
+  --footer-muted: #8898a8;
+  --link-color: #52b788;
+  --link-hover: #74c69d;
+  --code-bg: #2a3a4e;
+  --blockquote-border: #52b788;
+  --input-bg: #16213e;
+  --input-border: #2a3a4e;
+  --hero-gradient-start: #0f0f1a;
+  --hero-gradient-end: #1b4332;
+  --hero-text: #ffffff;
+  --badge-bg: #409f7a;
+  --badge-text: #ffffff;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.1rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+ul,
+ol {
+  margin-bottom: 1.2rem;
+  padding-left: 1.8rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+blockquote {
+  border-left: 4px solid var(--blockquote-border);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: var(--bg-tertiary);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+code {
+  background-color: var(--code-bg);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+}
+
+pre {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* ---------- Container ---------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Skip Link ---------- */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  transition: color var(--transition-speed);
+}
+
+.logo-text span {
+  color: var(--accent-color);
+}
+
+.logo-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-svg circle {
+  fill: var(--accent-color);
+}
+
+.logo-svg text {
+  fill: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color var(--transition-speed);
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width var(--transition-speed);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background var(--transition-speed);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background var(--transition-speed);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-toggle:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2.5px;
+  background-color: var(--text-primary);
+  transition: all var(--transition-speed);
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  z-index: 2000;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-menu-close {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 0.4rem;
+  border-radius: 50%;
+}
+
+.mobile-menu-close:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-links li {
+  margin-bottom: 0.5rem;
+}
+
+.mobile-nav-links a {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: 8px;
+  transition: background var(--transition-speed);
+}
+
+.mobile-nav-links a:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-color);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-end));
+  color: var(--hero-text);
+  padding: 4rem 0;
+  text-align: center;
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 2rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #ffffff;
+  color: var(--accent-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--bg-tertiary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section ---------- */
+.section {
+  padding: 3rem 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.section-header .section-title {
+  margin-bottom: 0.25rem;
+}
+
+.section-header .section-subtitle {
+  margin-bottom: 0;
+}
+
+.view-all {
+  font-weight: 500;
+  color: var(--accent-color);
+  font-size: 0.95rem;
+}
+
+.view-all:hover {
+  color: var(--accent-dark);
+}
+
+/* ---------- Article Cards ---------- */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.article-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  border: 1px solid var(--border-color);
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.article-card-image {
+  position: relative;
+  padding-top: 56.25%;
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.article-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.article-card:hover .article-card-image img {
+  transform: scale(1.02);
+}
+
+.article-card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.article-card-body {
+  padding: 1.5rem;
+}
+
+.article-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.article-card-meta .category {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.article-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.article-card-title a {
+  color: var(--text-primary);
+}
+
+.article-card-title a:hover {
+  color: var(--accent-color);
+}
+
+.article-card-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.article-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.article-card-footer .author {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.article-card-footer .date {
+  color: var(--text-muted);
+}
+
+/* ---------- Featured Articles ---------- */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.featured-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.featured-card-image {
+  position: relative;
+  padding-top: 50%;
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.featured-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.featured-card:hover .featured-card-image img {
+  transform: scale(1.02);
+}
+
+.featured-card-body {
+  padding: 1.5rem;
+}
+
+.featured-card-body .article-card-title {
+  font-size: 1.3rem;
+}
+
+/* ---------- Categories ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-speed);
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-color);
+  border-color: var(--accent-color);
+}
+
+.category-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-card .name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.category-card .count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Search ---------- */
+.search-section {
+  background-color: var(--bg-secondary);
+  padding: 2rem 0;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.search-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--input-border);
+  border-radius: 50px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color var(--transition-speed);
+}
+
+.search-form input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.search-form button {
+  padding: 0.75rem 1.75rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.search-form button:hover {
+  background-color: var(--accent-dark);
+}
+
+/* Search Results */
+.search-results {
+  margin-top: 2rem;
+}
+
+.search-result-count {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.search-highlight {
+  background-color: rgba(45, 106, 79, 0.2);
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+}
+
+/* ---------- Ads Placeholder ---------- */
+.ad-placeholder {
+  background-color: var(--bg-tertiary);
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 2rem 0;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-placeholder--header {
+  min-height: 80px;
+  margin-top: 0;
+}
+
+.ad-placeholder--article-top {
+  min-height: 120px;
+}
+
+.ad-placeholder--article-middle {
+  min-height: 150px;
+}
+
+.ad-placeholder--article-bottom {
+  min-height: 120px;
+}
+
+.ad-placeholder--sidebar {
+  min-height: 250px;
+}
+
+.ad-placeholder--related {
+  min-height: 100px;
+}
+
+.ad-placeholder--footer {
+  min-height: 80px;
+}
+
+/* ---------- Newsletter ---------- */
+.newsletter-section {
+  background-color: var(--bg-secondary);
+  padding: 3rem 0;
+  border-radius: 12px;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.newsletter-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-section p {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--input-border);
+  border-radius: 50px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color var(--transition-speed);
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.75rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.newsletter-form button:hover {
+  background-color: var(--accent-dark);
+}
+
+/* ---------- About Section ---------- */
+.about-section {
+  background-color: var(--bg-secondary);
+  padding: 3rem 0;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.about-section .container {
+  max-width: 800px;
+  text-align: center;
+}
+
+.about-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.about-section p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ---------- Social Links ---------- */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  transition: all var(--transition-speed);
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ---------- Share Buttons ---------- */
+.share-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  color: #fff;
+}
+
+.share-btn--facebook {
+  background-color: #1877f2;
+}
+.share-btn--facebook:hover {
+  background-color: #166fe5;
+}
+
+.share-btn--twitter {
+  background-color: #000000;
+}
+.share-btn--twitter:hover {
+  background-color: #333333;
+}
+
+.share-btn--whatsapp {
+  background-color: #25d366;
+}
+.share-btn--whatsapp:hover {
+  background-color: #1da851;
+}
+
+.share-btn--telegram {
+  background-color: #0088cc;
+}
+.share-btn--telegram:hover {
+  background-color: #0077b3;
+}
+
+.share-btn--copy {
+  background-color: var(--text-muted);
+}
+.share-btn--copy:hover {
+  background-color: var(--text-secondary);
+}
+
+/* ---------- Tags ---------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  text-decoration: none;
+}
+
+.tag:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ---------- Breadcrumbs ---------- */
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.breadcrumbs a {
+  color: var(--text-muted);
+  transition: color var(--transition-speed);
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-color);
+}
+
+.breadcrumbs .separator {
+  color: var(--text-muted);
+}
+
+.breadcrumbs .current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ---------- Article Page ---------- */
+.article-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.article-page .article-header {
+  margin-bottom: 2rem;
+}
+
+.article-page .article-header .category {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.article-page .article-header h1 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.2;
+}
+
+.article-page .article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-page .article-meta .author {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.article-page .article-featured-image {
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--bg-tertiary);
+}
+
+.article-page .article-featured-image img {
+  width: 100%;
+  height: auto;
+}
+
+.article-page .article-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.article-page .article-body h2 {
+  margin-top: 2rem;
+  font-size: 1.8rem;
+}
+
+.article-page .article-body h3 {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.article-page .article-body p {
+  margin-bottom: 1.2rem;
+}
+
+.article-page .article-body ul,
+.article-page .article-body ol {
+  margin-bottom: 1.2rem;
+}
+
+.article-page .article-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ---------- Related Articles ---------- */
+.related-articles {
+  margin: 3rem 0;
+}
+
+.related-articles h3 {
+  margin-bottom: 1.5rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.related-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all var(--transition-speed);
+}
+
+.related-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.related-card-image {
+  position: relative;
+  padding-top: 56.25%;
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.related-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.related-card:hover .related-card-image img {
+  transform: scale(1.02);
+}
+
+.related-card-body {
+  padding: 1rem;
+}
+
+.related-card-body h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.related-card-body h4 a {
+  color: var(--text-primary);
+}
+
+.related-card-body h4 a:hover {
+  color: var(--accent-color);
+}
+
+.related-card-body .meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Previous / Next ---------- */
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.prev-next .prev,
+.prev-next .next {
+  flex: 1;
+}
+
+.prev-next .next {
+  text-align: right;
+}
+
+.prev-next .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.prev-next .title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.prev-next .title:hover {
+  color: var(--accent-color);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 3rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.site-footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.site-footer h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--footer-text);
+}
+
+.site-footer p {
+  color: var(--footer-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+.site-footer ul a {
+  color: var(--footer-muted);
+  transition: color var(--transition-speed);
+  font-size: 0.95rem;
+}
+
+.site-footer ul a:hover {
+  color: var(--accent-light);
+}
+
+.site-footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: var(--footer-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 404 ---------- */
+.error-page {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.error-page h1 {
+  font-size: 6rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.error-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.error-page p {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.error-page .btn {
+  margin: 0 0.5rem;
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.75rem;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  border: 1px solid var(--border-color);
+}
+
+.pagination a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.pagination .current {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.pagination .disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Contact Form ---------- */
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color var(--transition-speed);
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.contact-form button:hover {
+  background-color: var(--accent-dark);
+}
+
+/* ---------- Legal Pages ---------- */
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.legal-page h1 {
+  margin-bottom: 1.5rem;
+}
+
+.legal-page h2 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.legal-page h3 {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.legal-page p,
+.legal-page ul {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.legal-page ul {
+  margin-bottom: 1.2rem;
+}
+
+/* ---------- Back to Top ---------- */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-4px);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding: 3rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .article-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .article-page .article-header h1 {
+    font-size: 2rem;
+  }
+
+  .article-page .article-body {
+    font-size: 1rem;
+  }
+
+  .prev-next {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .prev-next .next {
+    text-align: left;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .error-page h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .article-page .article-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .article-page .article-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .share-buttons {
+    flex-direction: column;
+  }
+
+  .share-btn {
+    justify-content: center;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .error-page h1 {
+    font-size: 3rem;
+  }
+
+  .pagination {
+    gap: 0.25rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    min-width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-card-body {
+    padding: 1rem;
+  }
+
+  .article-card-title {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Utility ---------- */
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+.gap-2 {
+  gap: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .site-header,
+  .site-footer,
+  .hero-actions,
+  .share-buttons,
+  .back-to-top,
+  .ad-placeholder,
+  .newsletter-section,
+  .related-articles,
+  .prev-next {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .article-page {
+    max-width: 100%;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}/**
+ * Apsara Rawal Dangar - Main JavaScript
+ */
+
+(function() {
+  'use strict';
+
+  // ============================================================
+  // DOM Ready
+  // ============================================================
+  document.addEventListener('DOMContentLoaded', function() {
+    initThemeToggle();
+    initMobileMenu();
+    initSearch();
+    initBackToTop();
+    initShareButtons();
+    initNewsletterForm();
+    initContactForm();
+  });
+
+  // ============================================================
+  // Theme Toggle
+  // ============================================================
+  function initThemeToggle() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    // Get stored theme or system preference
+    const storedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let currentTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+    setTheme(currentTheme);
+
+    toggle.addEventListener('click', function() {
+      const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) {
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  }
+
+  // ============================================================
+  // Mobile Menu
+  // ============================================================
+  function initMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+    if (!hamburger || !mobileMenu) return;
+
+    // Open menu
+    hamburger.addEventListener('click', function() {
+      toggleMobileMenu(true);
+    });
+
+    // Close menu
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        toggleMobileMenu(false);
+      });
+    }
+
+    // Close on link click
+    menuLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        toggleMobileMenu(false);
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        toggleMobileMenu(false);
+      }
+    });
+
+    // Close on outside click
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) {
+        toggleMobileMenu(false);
+      }
+    });
+  }
+
+  function toggleMobileMenu(open) {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+
+    if (open) {
+      mobileMenu.classList.add('open');
+      hamburger.classList.add('active');
+      body.style.overflow = 'hidden';
+      mobileMenu.focus();
+    } else {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('active');
+      body.style.overflow = '';
+    }
+  }
+
+  // ============================================================
+  // Search
+  // ============================================================
+  function initSearch() {
+    const searchToggle = document.getElementById('searchToggle');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    // Toggle search focus on mobile
+    if (searchToggle && searchInput) {
+      searchToggle.addEventListener('click', function() {
+        searchInput.focus();
+      });
+    }
+
+    // Handle search form submission
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+          showSearchMessage('Please enter at least 2 characters', 'info');
+          return;
+        }
+        performSearch(query);
+      });
+    }
+
+    // Real-time search (with debounce)
+    if (searchInput) {
+      let debounceTimer;
+      searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        const query = this.value.trim();
+        if (query.length >= 2) {
+          debounceTimer = setTimeout(function() {
+            performSearch(query);
+          }, 300);
+        } else if (query.length === 0) {
+          if (searchResults) searchResults.innerHTML = '';
+        }
+      });
+    }
+  }
+
+  function performSearch(query) {
+    const searchResults = document.getElementById('searchResults');
+    if (!searchResults) return;
+
+    // Show loading state
+    searchResults.innerHTML = '<p class="text-muted">Searching...</p>';
+
+    // Load search index
+    fetch('/search-index.json')
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Search index not found');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        const results = searchInIndex(data, query);
+        displaySearchResults(results, query);
+      })
+      .catch(function(error) {
+        console.error('Search error:', error);
+        searchResults.innerHTML = '<p class="text-muted">Search is currently unavailable. Please try again later.</p>';
+      });
+  }
+
+  function searchInIndex(index, query) {
+    const q = query.toLowerCase();
+    const results = [];
+
+    index.forEach(function(item) {
+      let score = 0;
+      const fields = ['title', 'description', 'category', 'subcategory', 'tags', 'keywords'];
+
+      fields.forEach(function(field) {
+        const value = item[field];
+        if (value) {
+          const str = String(value).toLowerCase();
+          if (str.includes(q)) {
+            score += 1;
+            // Boost for title matches
+            if (field === 'title') score += 2;
+            // Boost for exact phrase matches
+            if (str.indexOf(q) === 0) score += 1;
+          }
+        }
+      });
+
+      if (score > 0) {
+        results.push({
+          item: item,
+          score: score
+        });
+      }
+    });
+
+    // Sort by score (highest first)
+    results.sort(function(a, b) {
+      return b.score - a.score;
+    });
+
+    return results.map(function(r) { return r.item; });
+  }
+
+  function displaySearchResults(results, query) {
+    const searchResults = document.getElementById('searchResults');
+    if (!searchResults) return;
+
+    if (results.length === 0) {
+      searchResults.innerHTML = `
+        <div class="search-result-count">No results found for "<strong>${escapeHtml(query)}</strong>"</div>
+        <p class="text-muted">Try different keywords or check your spelling.</p>
+      `;
+      return;
+    }
+
+    const count = results.length;
+    let html = `<div class="search-result-count">Found ${count} result${count > 1 ? 's' : ''} for "<strong>${escapeHtml(query)}</strong>"</div>`;
+    html += '<div class="article-grid">';
+
+    results.forEach(function(item) {
+      const title = highlightText(item.title, query);
+      const description = highlightText(item.description, query);
+      html += `
+        <article class="article-card">
+          <div class="article-card-image">
+            <img src="${item.image || '/assets/images/placeholder.jpg'}" alt="${escapeHtml(item.title)}" loading="lazy">
+            <span class="article-card-badge">${escapeHtml(item.category)}</span>
+          </div>
+          <div class="article-card-body">
+            <h3 class="article-card-title"><a href="/article/${item.slug}/">${title}</a></h3>
+            <p class="article-card-description">${description}</p>
+            <div class="article-card-footer">
+              <span class="author">${escapeHtml(item.author)}</span>
+              <span class="date">${formatDate(item.datePublished)}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    });
+
+    html += '</div>';
+    searchResults.innerHTML = html;
+  }
+
+  function showSearchMessage(message, type) {
+    const searchResults = document.getElementById('searchResults');
+    if (!searchResults) return;
+    searchResults.innerHTML = `<p class="text-muted">${message}</p>`;
+  }
+
+  // ============================================================
+  // Back to Top
+  // ============================================================
+  function initBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ============================================================
+  // Share Buttons
+  // ============================================================
+  function initShareButtons() {
+    const shareButtons = document.querySelectorAll('.share-btn');
+    if (!shareButtons.length) return;
+
+    shareButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const url = this.getAttribute('data-url') || window.location.href;
+        const title = this.getAttribute('data-title') || document.title;
+        const platform = this.getAttribute('data-platform');
+
+        if (platform === 'copy') {
+          copyToClipboard(url);
+          return;
+        }
+
+        const shareUrls = {
+          facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
+          twitter: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url),
+          whatsapp: 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + url),
+          telegram: 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title)
+        };
+
+        const shareUrl = shareUrls[platform];
+        if (shareUrl) {
+          window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+      });
+    });
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Link copied to clipboard!');
+      }).catch(function() {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      showToast('Link copied to clipboard!');
+    } catch (e) {
+      showToast('Failed to copy link');
+    }
+    document.body.removeChild(textarea);
+  }
+
+  // ============================================================
+  // Toast Notification
+  // ============================================================
+  function showToast(message) {
+    const existing = document.querySelector('.toast-notification');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--text-primary);
+      color: var(--bg-primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: slideUp 0.3s ease;
+      max-width: 90%;
+      text-align: center;
+    `;
+
+    // Add animation keyframes if not exists
+    if (!document.getElementById('toastStyles')) {
+      const style = document.createElement('style');
+      style.id = 'toastStyles';
+      style.textContent = `
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    document.body.appendChild(toast);
+
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.3s ease';
+      setTimeout(function() {
+        toast.remove();
+      }, 300);
+    }, 3000);
+  }
+
+  // ============================================================
+  // Newsletter Form
+  // ============================================================
+  function initNewsletterForm() {
+    const form = document.getElementById('newsletterForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      if (email && isValidEmail(email)) {
+        showToast('Thank you for subscribing! (This is a demo - no emails are sent)');
+        this.reset();
+      } else {
+        showToast('Please enter a valid email address');
+      }
+    });
+  }
+
+  // ============================================================
+  // Contact Form
+  // ============================================================
+  function initContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this.querySelector('#contactName').value;
+      const email = this.querySelector('#contactEmail').value;
+      const message = this.querySelector('#contactMessage').value;
+
+      if (name && email && message && isValidEmail(email)) {
+        showToast('Thank you for your message! (This is a demo - no emails are sent)');
+        this.reset();
+      } else {
+        showToast('Please fill in all fields correctly');
+      }
+    });
+  }
+
+  // ============================================================
+  // Utility Functions
+  // ============================================================
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch (e) {
+      return dateString;
+    }
+  }
+
+  function highlightText(text, query) {
+    if (!text || !query) return escapeHtml(text);
+    const escapedText = escapeHtml(text);
+    const escapedQuery = escapeHtml(query);
+    const regex = new RegExp('(' + escapedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return escapedText.replace(regex, '<mark class="search-highlight">$1</mark>');
+  }
+
+})();<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" cont
